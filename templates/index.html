@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ida & Samuel – Vårt Bröllop 💍</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+         body {
+            background: #f7d4e4; /* 🌸 ljusrosa bakgrundsfärg */
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2b2b2b;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .countdown div {
+            text-align: center;
+        }
+        .countdown span {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero d-flex align-items-center justify-content-center text-center">
+        <div class="overlay"></div>
+        <div class="text-white position-relative">
+            <h1 style="color:rgb(0, 0, 0); font-size:50px;">Ida & Samuel</h1>
+            <p style="color:rgb(0, 0, 0); font-size:30px;">💞 Välkommen till vår bröllopssida 💞</p>
+        </div>
+    </header>
+
+    <section class="container py-5 text-center">
+        <h2 class="mb-4">Vi gifter oss den 22 augusti 2026!</h2>
+        <p class="fs-5">Vi ser så mycket fram emot att fira vår stora dag med er! Här hittar du all information du behöver inför bröllopet.</p>
+        
+        <!-- 🌸 NEDRÄKNING -->
+        <div id="countdown" class="countdown"></div>
+    </section>
+
+    <section class="container py-5">
+        <h3>📍 Tid & Plats</h3>
+        <p>Bröllopet äger rum på <strong>Tjörn</strong>. Vigsel kommer vara på <strong>Klädesholmen</strong> och festen kommer hållas i <strong>Klöverdals församlingshem</strong>.</p>
+        <p>Vigseln börjar kl. <strong>15:00</strong> på Klädesholmens kyrka, följt av middag och fest i Klöverdal.</p>
+    </section>
+
+    <section class="container py-5">
+        <h3>🥂 Toastmasters</h3>
+        <p>Våra fantastiska toastmasters är <strong>Ellen</strong> och <strong>David Arnfjell Rodmar</strong>.</p>
+        <p>Har du frågor om tal, överraskningar eller musik? Kontakta dem på <a href="mailto:toast@idaochsamuel.com">toast@idaochsamuel.com</a>.</p>
+    </section>
+
+    <section class="container py-5">
+        <h3>🎁 Önskelista</h3>
+        <p>Framförallt önskar vi oss bidrag till vår bröllopsresa! Men här finns också en länk till grejor vi skulle uppskatta:</p>
+        <i>Vid problem med länk eller önskelistan, kontakta Samuel.</i>
+        <br><br>
+        <a href="https://presentlistan.nu/C21223/#" target="_blank" class="btn btn-primary mt-2">Se önskelistan</a>
+    </section>
+
+    <section class="container py-5">
+        <h3>💌 OSA</h3>
+        <p>Vänligen svara senast <strong>22 juni 2026</strong>.</p>
+        <a href="https://forms.gle/dinformlänk" target="_blank" class="btn btn-primary mt-2">OSA här</a>
+    </section>
+
+    <footer class="text-center py-4 bg-light">
+        <small>© 2026 Ida & Samuel – Skapad med ❤️ av Samuel</small>
+    </footer>
+
+    <script>
+        // 🕒 Nedräkning till bröllopet
+        const weddingDate = new Date("2026-08-22T15:00:00").getTime();
+        const countdown = document.getElementById("countdown");
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                countdown.innerHTML = "<p class='fs-4 text-success'>💍 Idag är dagen! 💖</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = `
+                <div>${days}<span>dagar</span></div>
+                <div>${hours}<span>timmar</span></div>
+                <div>${minutes}<span>minuter</span></div>
+                <div>${seconds}<span>sekunder</span></div>
+            `;
+        };
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
